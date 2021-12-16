@@ -1,19 +1,30 @@
 import React from 'react';
-
+import lunchs, { Lunch } from './lunch';
 
 export interface Stats {
-  name: string
+  name: string,
+  lunchs: Lunch[]
 }
 
 export default class App extends React.Component {
 
-  
+
   state: Readonly<Stats> = {
-    name: "让我瞅瞅中午吃啥"
+    name: "我们现在有的午餐",
+    lunchs
   };
 
-  
+
   render(): React.ReactNode {
-    return <h3>Hello World!  {this.state.name}</h3>
+    return (
+      <div>
+        <h3>中午吃啥</h3>
+        <div>
+          <ul>
+            { this.state.lunchs.map((item, index) => <li key={index}> {item.name}</li> ) }
+          </ul>
+        </div>
+      </div>
+    )
   }
 }
